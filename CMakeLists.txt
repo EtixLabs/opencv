@@ -14,6 +14,13 @@ FATAL: In-source builds are not allowed.
 ")
 endif()
 
+set(OPENCV_OUTPUT "${CMAKE_SOURCE_DIR}/../dcim/cctv/cctv-server/deps/build/opencv/output/")
+add_custom_target(all)
+ADD_CUSTOM_COMMAND(TARGET all
+ POST_BUILD
+ COMMAND ${CMAKE_COMMAND} -E make_directory ${OPENCV_OUTPUT}
+ COMMAND ${CMAKE_COMMAND} -E copy_directory ../output/ ${OPENCV_OUTPUT}
+ )
 
 include(cmake/OpenCVMinDepVersions.cmake)
 
