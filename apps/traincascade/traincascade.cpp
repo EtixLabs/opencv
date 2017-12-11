@@ -1,5 +1,7 @@
 #include "opencv2/core.hpp"
+
 #include "cascadeclassifier.h"
+#include "traincascade_features.h"
 
 using namespace std;
 using namespace cv;
@@ -19,9 +21,11 @@ int main( int argc, char* argv[] )
 
     CvCascadeParams cascadeParams;
     CvCascadeBoostParams stageParams;
-    Ptr<CvFeatureParams> featureParams[] = { makePtr<CvHaarFeatureParams>(),
-                                             makePtr<CvLBPFeatureParams>(),
-                                             makePtr<CvHOGFeatureParams>()
+    Ptr<CvFeatureParams> featureParams[] = { makePtr<CvHaarFeatureParams>() ,
+                                             makePtr<CvLBPFeatureParams>() ,
+                                             makePtr<CvHOGFeatureParams>() ,
+                                             makePtr<CvACFFeatureParams>()
+                                            //  makePtr<CvCBFeatureParams>()
                                            };
     int fc = sizeof(featureParams)/sizeof(featureParams[0]);
     if( argc == 1 )

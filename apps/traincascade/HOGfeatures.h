@@ -10,7 +10,8 @@
 #define N_CELLS 4
 
 #define HOGF_NAME "HOGFeatureParams"
-struct CvHOGFeatureParams : public CvFeatureParams
+
+struct CvHOGFeatureParams : CvFeatureParams
 {
     CvHOGFeatureParams();
 };

@@ -6,6 +6,8 @@
 #include "haarfeatures.h"
 #include "lbpfeatures.h"
 #include "HOGfeatures.h" //new
+#include "acffeatures.h" // newer 1
+#include "cbfeatures.h" // newer 2
 #include "boost.h"
 
 #define CC_CASCADE_FILENAME "cascade.xml"
@@ -55,6 +57,10 @@
 
 #define CC_HOG "HOG"
 
+#define CC_ACF "ACF"
+
+#define CC_CB "CB"
+
 #ifdef _WIN32
 #define TIME( arg ) (((double) clock()) / CLOCKS_PER_SEC)
 #else
@@ -66,7 +72,7 @@ class CvCascadeParams : public CvParams
 public:
     enum { BOOST = 0 };
     static const int defaultStageType = BOOST;
-    static const int defaultFeatureType = CvFeatureParams::HAAR;
+    static const int defaultFeatureType = CvFeatureParams::ACF;
 
     CvCascadeParams();
     CvCascadeParams( int _stageType, int _featureType );

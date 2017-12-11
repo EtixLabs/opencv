@@ -6,7 +6,8 @@
 #define CV_HAAR_FEATURE_MAX      3
 
 #define HFP_NAME "haarFeatureParams"
-class CvHaarFeatureParams : public CvFeatureParams
+
+class CvHaarFeatureParams : CvFeatureParams
 {
 public:
     enum { BASIC = 0, CORE = 1, ALL = 2 };

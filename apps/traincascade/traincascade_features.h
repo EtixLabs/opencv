@@ -62,14 +62,16 @@ public:
 class CvFeatureParams : public CvParams
 {
 public:
-    enum { HAAR = 0, LBP = 1, HOG = 2 };
+    enum { HAAR = 0, LBP = 1, HOG = 2, ACF = 3, CB = 4};
     CvFeatureParams();
     virtual void init( const CvFeatureParams& fp );
     virtual void write( cv::FileStorage &fs ) const;
     virtual bool read( const cv::FileNode &node );
     static cv::Ptr<CvFeatureParams> create( int featureType );
-    int maxCatCount; // 0 in case of numerical features
-    int featSize; // 1 in case of simple features (HAAR, LBP) and N_BINS(9)*N_CELLS(4) in case of Dalal's HOG features
+    int maxCatCount; // max categorical count for categorical features, equals 0 in case of numerical features
+    int featSize; // 1 in case of simple features (HAAR, LBP)
+                  // and N_BINS(9)*N_CELLS(4) in case of Dalal's HOG features 
+                  // 39 features per sample for CB and (w*h)/sqr(shrink) for ACF also per sample
 };
 
 class CvFeatureEvaluator
