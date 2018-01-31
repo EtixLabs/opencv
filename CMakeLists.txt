@@ -14,13 +14,6 @@ FATAL: In-source builds are not allowed.
 ")
 endif()
 
-set(OPENCV_OUTPUT "${CMAKE_SOURCE_DIR}/../dcim/cctv/cctv-server/deps/build/opencv/output/")
-add_custom_target(all)
-ADD_CUSTOM_COMMAND(TARGET all
- POST_BUILD
- COMMAND ${CMAKE_COMMAND} -E make_directory ${OPENCV_OUTPUT}
- COMMAND ${CMAKE_COMMAND} -E copy_directory ../output/ ${OPENCV_OUTPUT}
- )
 
 include(cmake/OpenCVMinDepVersions.cmake)
 
@@ -210,7 +203,7 @@ OCV_OPTION(WITH_FFMPEG         "Include FFMPEG support"                      ON 
 OCV_OPTION(WITH_GSTREAMER      "Include Gstreamer support"                   ON   IF (NOT ANDROID) )
 OCV_OPTION(WITH_GSTREAMER_0_10 "Enable Gstreamer 0.10 support (instead of 1.x)"                              OFF )
 OCV_OPTION(WITH_GTK            "Include GTK support"                         ON   IF (UNIX AND NOT APPLE AND NOT ANDROID) )
-OCV_OPTION(WITH_GTK_2_X        "Use GTK version 2"                           OFF  IF (UNIX AND NOT APPLE AND NOT ANDROID) )
+OCV_OPTION(WITH_GTK_2_X        "Use GTK version 2"                           ON  IF (UNIX AND NOT APPLE AND NOT ANDROID) )
 OCV_OPTION(WITH_IPP            "Include Intel IPP support"                   NOT MINGW IF (X86_64 OR X86) AND NOT WINRT )
 OCV_OPTION(WITH_HALIDE         "Include Halide support"                      OFF)
 OCV_OPTION(WITH_JASPER         "Include JPEG2K support"                      ON   IF (NOT IOS) )
@@ -295,6 +288,8 @@ OCV_OPTION(INSTALL_PYTHON_EXAMPLES  "Install Python examples"   OFF )
 OCV_OPTION(INSTALL_ANDROID_EXAMPLES "Install Android examples"  OFF IF ANDROID )
 OCV_OPTION(INSTALL_TO_MANGLED_PATHS "Enables mangled install paths, that help with side by side installs." OFF IF (UNIX AND NOT ANDROID AND NOT APPLE_FRAMEWORK AND BUILD_SHARED_LIBS) )
 OCV_OPTION(INSTALL_TESTS            "Install accuracy and performance test binaries and test data" OFF)
+ocv_clear_vars(CMAKE_INSTALL_PREFIX)
+SET(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/../dcim/cctv/cctv-server/deps/build/opencv/output/" CACHE PATH "output install prefix" FORCE)
 
 # OpenCV build options
 # ===================================================
