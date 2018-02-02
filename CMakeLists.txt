@@ -288,8 +288,6 @@ OCV_OPTION(INSTALL_PYTHON_EXAMPLES  "Install Python examples"   OFF )
 OCV_OPTION(INSTALL_ANDROID_EXAMPLES "Install Android examples"  OFF IF ANDROID )
 OCV_OPTION(INSTALL_TO_MANGLED_PATHS "Enables mangled install paths, that help with side by side installs." OFF IF (UNIX AND NOT ANDROID AND NOT APPLE_FRAMEWORK AND BUILD_SHARED_LIBS) )
 OCV_OPTION(INSTALL_TESTS            "Install accuracy and performance test binaries and test data" OFF)
-ocv_clear_vars(CMAKE_INSTALL_PREFIX)
-SET(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/../dcim/cctv/cctv-server/deps/build/opencv/output/" CACHE PATH "output install prefix" FORCE)
 
 # OpenCV build options
 # ===================================================
